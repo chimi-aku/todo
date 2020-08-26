@@ -187,3 +187,12 @@ body {
   }
 
 /** task **/
+
+.tasks_section {
+    min-height: 100vh;
+    padding-top: 12rem;
+}
+
+.task {
+
+}
