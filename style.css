@@ -1,0 +1,185 @@
+/*
+#E67E22
+#9CF0A1
+#F0B684
+#8B6CF0
+#6552A3
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    height: 100vh;
+    position: relative;
+}
+
+.header {
+    position: fixed;
+    width: 100vw;
+    height: 12rem;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 2.5rem;
+    font-family: 'Do Hyeon', sans-serif;
+    color: #6552A3;
+
+    border-bottom: #E67E22 solid 4px;
+    box-shadow: 0px 6px 28px -7px rgba(230,126,34,1);
+}
+
+.left_text {
+    flex-basis: 60%;
+    margin-left: 5rem;
+}
+
+.right_text {
+    flex-basis: 10%;
+    text-align: center;
+}
+
+.plus  {
+    flex-basis: 30%;
+    text-align: right;
+
+    transition: .3s;
+}
+
+.plus svg:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.plus svg:active {
+    transform: translateY(2px);
+}
+
+/**form to add new task**/
+
+.add_task_form {
+    width: 40rem;
+    height: 50rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: solid 5px #8B6CF0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close_btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: #F0B684;
+    background-image: url(https://img.icons8.com/carbon-copy/100/000000/close-window.png);
+    background-size:cover;
+}
+
+.input_area {
+    width: 80%;
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    font-size: 2rem;
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+.form_label {
+
+}
+
+.form_input {
+    border: none;
+    border-bottom: 2px solid #6552A3; 
+    outline: none;
+    margin-bottom: 2rem;
+    font-family: 'Baloo Tamma 2', cursive;
+    font-size: 2rem;
+    height: 2.5rem;
+}
+
+.form_input:focus {
+    border-bottom: 2px solid #E67E22; 
+}
+
+.form_textarea {
+    height: 20rem;
+    margin-top: 1.2rem;
+
+    font-size: 2rem;
+    font-family: 'Baloo Tamma 2', cursive;
+    font-weight: 200;
+    resize: none;
+    outline: none;
+    border: 2px solid #6552A3; 
+}
+
+.form_textarea:focus {
+    border: 2px solid #E67E22; 
+}
+
+.add_btn {
+    width: 9rem;
+    height: 4rem;
+    margin-top: 4rem;
+
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-family: 'Do Hyeon', sans-serif;
+    color: #6552A3;
+    background-color: #9CF0A1;
+    border-radius: 15px;
+
+    border: none;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.add_btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.add_btn span {
+    display: block;
+    padding: 0 20px;
+    animation: move-left 3s linear infinite;
+    position: relative;
+    height: 100%;
+}
+
+.add_btn span::after {
+    position: absolute;
+    content: "add task";
+    top: 0;
+    left: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes move-left {
+    to {
+      transform: translateX(-200%);
+    }
+  }
