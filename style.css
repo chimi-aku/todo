@@ -91,6 +91,10 @@ body {
     background-size:cover;
 }
 
+.close_btn:hover {
+    cursor: pointer;
+}
+
 .input_area {
     width: 80%;
     margin-top: 8rem;
@@ -102,9 +106,6 @@ body {
     font-family: 'Do Hyeon', sans-serif;
 }
 
-.form_label {
-
-}
 
 .form_input {
     border: none;
@@ -148,6 +149,7 @@ body {
     background-color: #9CF0A1;
     border-radius: 15px;
 
+    outline: none;
     border: none;
     overflow: hidden;
     transition: 0.3s;
@@ -183,3 +185,5 @@ body {
       transform: translateX(-200%);
     }
   }
+
+/** task **/

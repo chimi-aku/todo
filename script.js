@@ -1,7 +1,29 @@
 const addTaskBtn = document.querySelector('.add_task_btn');
 const body = document.querySelector('body');
 
-function showForm(){
+const whoIsLogged = {
+    login: 'testuser',
+    password: '123',
+}
+
+let users = [
+    {
+        login: 'testuser',
+        password: '123',
+        tasks: []
+    }
+];
+
+class Task {
+    constructor(name, des) {
+        this.name = name;
+        this.des = des;
+        this.done = false;
+     }
+}
+
+
+function showAddTaskForm(){
     const form = document.createElement('div');
     form.classList.add('add_task_form');
     body.appendChild(form);
@@ -39,10 +61,61 @@ function showForm(){
     const addBtnText = document.createElement('span')
     addBtn.appendChild(addBtnText);
     form.appendChild(addBtn);
+
+    closeBtn.addEventListener('click', closeAddTaskForm)
+    addBtn.addEventListener('click', addTaskFromForm);
+    addTaskBtn.removeEventListener('click', addTask);
 }
 
-function addTask(){
-    showForm();
+function closeAddTaskForm() {
+    const form = document.querySelector('.add_task_form');
+    body.removeChild(form);
+
+    addTaskBtn.addEventListener('click', addTask);
 }
-showForm();
+
+function addTaskFromForm() {
+    const inputTaskName = document.querySelector('.form_input');
+    const inputTaskDes = document.querySelector('.form_textarea');
+
+    const taskName = inputTaskName.value;
+    const taskDes = inputTaskDes.value;
+    const newTask = new Task(taskName, taskDes);
+    
+    for(let user of users){
+        if(user.login == whoIsLogged.login){
+            user.tasks.push(newTask);
+        }
+    }
+    
+    inputTaskName.value = '';
+    inputTaskDes.value = '';
+
+    updateLocalStorage();
+}
+
+
+function addTask() {
+    showAddTaskForm();
+}
+
+function updateLocalStorage() {
+    if(typeof localStorage !== 'undefined'){
+        localStorage.removeItem('users data');
+        localStorage.setItem('users data', JSON.stringify(users));
+    }
+}
+
+function showTasks() {
+    for(let user of users){
+        if(user.login == whoIsLogged.login){
+            const task = document.createElement('div');
+            c
+        }
+    }
+}
+
+
+/**MAIN**/
+showAddTaskForm();
 addTaskBtn.addEventListener('click', addTask);
