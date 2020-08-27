@@ -39,16 +39,25 @@ body {
     box-shadow: 0px 6px 28px -7px rgba(230,126,34,1);
 
     z-index: 1000000;
+
 }
 
 .left_text {
     flex-basis: 60%;
     margin-left: 5rem;
+
+    @media (max-width: 1000px) {
+        flex-basis: 30%;
+    }
 }
 
 .right_text {
     flex-basis: 10%;
     text-align: center;
+
+    @media (max-width: 1000px) {
+        flex-basis: 5s0%;
+    }
 }
 
 .plus  {
@@ -56,6 +65,10 @@ body {
     text-align: right;
 
     transition: .3s;
+
+    @media (max-width: 1000px) {
+        flex-basis: 5%;
+    }
 }
 
 .plus svg:hover {

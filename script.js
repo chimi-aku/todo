@@ -11,7 +11,7 @@ let users = [
     {
         login: 'testuser',
         password: '123',
-        tasks: [{name: 'dupa', des: 'wielka wielka wielka ', id: 23233}] // to tests
+        tasks: [] // to tests
     }
 ];
 
@@ -67,6 +67,7 @@ function showAddTaskForm(){
     closeBtn.addEventListener('click', closeAddTaskForm)
     addBtn.addEventListener('click', addTaskFromForm);
     addTaskBtn.removeEventListener('click', addTask);
+    
 }
 
 function closeAddTaskForm() {
@@ -139,6 +140,11 @@ function updateLocalStorage() {
     }
 }
 
+function loadDataFromLocalStorage() {
+    if(typeof localStorage !== 'undefined'){
+        users = JSON.parse(localStorage.getItem('users data'));
+    }
+}
 
 function showTasks() {
     const taskSection = document.querySelector('.tasks_section');
@@ -194,7 +200,7 @@ function listenDeleteBtns() {
 }
 
 /**MAIN**/
-
+loadDataFromLocalStorage();
 showTasks();
 listenDeleteBtns();
 
