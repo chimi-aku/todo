@@ -1,5 +1,6 @@
 const addTaskBtn = document.querySelector('.add_task_btn');
 const body = document.querySelector('body');
+let deleteTaskBtns;
 
 const whoIsLogged = {
     login: 'testuser',
@@ -76,6 +77,8 @@ function closeAddTaskForm() {
 }
 
 function addTaskFromForm() {
+
+    listenDeleteBtns()
     const inputTaskName = document.querySelector('.form_input');
     const inputTaskDes = document.querySelector('.form_textarea');
 
@@ -97,11 +100,36 @@ function addTaskFromForm() {
 
     updateLocalStorage();
     showTasks();
+
+    listenDeleteBtns();
+
 }
 
 
 function addTask() {
     showAddTaskForm();
+}
+
+function deleteTask(e) {
+    console.log(e.target.parentNode);
+    
+    for(let user of users){
+        if(user.login == whoIsLogged.login){
+            let i = 0;
+            for(let t of user.tasks) {
+                if(t.id == e.target.parentNode.dataset.id){
+                    user.tasks.splice(i, 1);
+                    updateLocalStorage();
+                    showTasks();
+                    console.log(users);
+                    return;
+                }
+                i++;
+            }
+        }
+        
+    }
+
 }
 
 function updateLocalStorage() {
@@ -110,6 +138,7 @@ function updateLocalStorage() {
         localStorage.setItem('users data', JSON.stringify(users));
     }
 }
+
 
 function showTasks() {
     const taskSection = document.querySelector('.tasks_section');
@@ -152,12 +181,22 @@ function showTasks() {
             }
         }
     }
+    listenDeleteBtns();
 
 
 }
 
+function listenDeleteBtns() {
+        /* set listening on delete Task btns */
+        deleteTaskBtns = document.querySelectorAll('.delete_btn').forEach(btn =>
+        btn.addEventListener('click', deleteTask));
+        console.log(deleteTaskBtns);
+}
 
 /**MAIN**/
+
 showTasks();
+listenDeleteBtns();
+
 //showAddTaskForm();
 addTaskBtn.addEventListener('click', addTask);
