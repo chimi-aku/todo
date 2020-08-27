@@ -19,12 +19,14 @@ html {
 body {
     height: 100vh;
     position: relative;
+    overflow:hidden;
 }
 
 .header {
     position: fixed;
     width: 100vw;
     height: 12rem;
+    top: 0;
 
     display: flex;
     align-items: center;
@@ -35,6 +37,8 @@ body {
 
     border-bottom: #E67E22 solid 4px;
     box-shadow: 0px 6px 28px -7px rgba(230,126,34,1);
+
+    z-index: 1000000;
 }
 
 .left_text {
@@ -69,7 +73,7 @@ body {
     width: 40rem;
     height: 50rem;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -78,6 +82,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    z-index: 10000;
 }
 
 .close_btn {
@@ -190,18 +196,22 @@ body {
 
 .tasks_section {
     min-height: 100vh;
-    padding: 15rem 5rem;
+    padding: 0rem 5rem;
+    margin-top: 16rem;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
-    flex-wrap: nowrap;
-    
+    flex-wrap: wrap;
+    overflow: auto;
+    height: 100%;
 }
 
 .task {
     width: 35rem;
     min-height: 20rem;
+    margin-right: 5rem;
+    margin-bottom: 5rem;
     height: auto;
     position: relative;
 
@@ -288,8 +298,25 @@ body {
       margin-top: -80px;
       opacity: 0;
     }
-  }
+}
 
+.delete_btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: #F0B684;
+    background-image: url(./imgs/recycle-bin.png);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    outline: none;
+}
+
+.delete_btn:hover {
+    cursor: pointer;
+}
 
 .task_name {
     width: 80%;

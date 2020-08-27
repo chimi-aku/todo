@@ -83,10 +83,12 @@ function addTaskFromForm() {
     const taskDes = inputTaskDes.value;
     const id = Math.floor(Math.random() * 1000000);
     const newTask = new Task(taskName, taskDes, id);
+
     
     for(let user of users){
         if(user.login == whoIsLogged.login){
             user.tasks.push(newTask);
+            console.log(user.tasks)
         }
     }
     
@@ -110,11 +112,13 @@ function updateLocalStorage() {
 }
 
 function showTasks() {
+    const taskSection = document.querySelector('.tasks_section');
+    taskSection.innerHTML = '';
+
     for(let user of users){
         if(user.login == whoIsLogged.login){
             let i = 0;
             for(let t of user.tasks) {
-                const taskSection = document.querySelector('.tasks_section');
     
                 const task = document.createElement('div');
                 task.classList.add('task');
@@ -126,7 +130,7 @@ function showTasks() {
                 task.appendChild(topBar);
     
                 const closeBtn = document.createElement('button');
-                closeBtn.classList.add('close_btn');
+                closeBtn.classList.add('delete_btn');
                 task.appendChild(closeBtn);
 
                 const checkbox = document.createElement('input');
@@ -148,6 +152,8 @@ function showTasks() {
             }
         }
     }
+
+
 }
 
 
