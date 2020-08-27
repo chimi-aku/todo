@@ -10,14 +10,15 @@ let users = [
     {
         login: 'testuser',
         password: '123',
-        tasks: []
+        tasks: [{name: 'dupa', des: 'wielka wielka wielka ', id: 23233}] // to tests
     }
 ];
 
 class Task {
-    constructor(name, des) {
+    constructor(name, des, id) {
         this.name = name;
         this.des = des;
+        this.id = id;
         this.done = false;
      }
 }
@@ -80,7 +81,8 @@ function addTaskFromForm() {
 
     const taskName = inputTaskName.value;
     const taskDes = inputTaskDes.value;
-    const newTask = new Task(taskName, taskDes);
+    const id = Math.floor(Math.random() * 1000000);
+    const newTask = new Task(taskName, taskDes, id);
     
     for(let user of users){
         if(user.login == whoIsLogged.login){
@@ -92,6 +94,7 @@ function addTaskFromForm() {
     inputTaskDes.value = '';
 
     updateLocalStorage();
+    showTasks();
 }
 
 
@@ -109,13 +112,46 @@ function updateLocalStorage() {
 function showTasks() {
     for(let user of users){
         if(user.login == whoIsLogged.login){
-            const task = document.createElement('div');
-            c
+            let i = 0;
+            for(let t of user.tasks) {
+                const taskSection = document.querySelector('.tasks_section');
+    
+                const task = document.createElement('div');
+                task.classList.add('task');
+                task.dataset.id = t.id;
+                taskSection.appendChild(task);
+    
+                const topBar = document.createElement('div');
+                topBar.classList.add('task_top_bar');
+                task.appendChild(topBar);
+    
+                const closeBtn = document.createElement('button');
+                closeBtn.classList.add('close_btn');
+                task.appendChild(closeBtn);
+
+                const checkbox = document.createElement('input');
+                checkbox.classList.add('task_checkbox');
+                checkbox.type = 'checkbox';
+                task.appendChild(checkbox);
+
+                const taskName = document.createElement('p');
+                taskName.classList.add('task_name');
+                taskName.textContent = t.name;
+                task.appendChild(taskName);
+
+                const taskDes = document.createElement('p');
+                taskDes.classList.add('task_des');
+                taskDes.textContent = t.des;
+                task.appendChild(taskDes);
+
+                i++;
+            }
         }
     }
 }
 
 
 /**MAIN**/
-showAddTaskForm();
+showTasks();
+//showAddTaskForm();
 addTaskBtn.addEventListener('click', addTask);
