@@ -157,7 +157,7 @@ function updateLocalStorage() {
 }
 
 function loadDataFromLocalStorage() {
-    if(typeof localStorage !== 'undefined'){
+    if(typeof localStorage !== 'undefined' && localStorage.getItem('users data') != 'undefined'){
         users = JSON.parse(localStorage.getItem('users data'));
     }
 }
