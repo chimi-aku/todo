@@ -197,7 +197,7 @@ function showTasks() {
 
                 const taskDes = document.createElement('p');
                 taskDes.classList.add('task_des');
-                taskDes.textContent = t.des;
+                taskDes.innerText = t.des;
                 task.appendChild(taskDes);
 
                 i++;
